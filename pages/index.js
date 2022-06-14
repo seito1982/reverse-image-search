@@ -46,37 +46,47 @@ export default function Home({ allPostsData }) {
 
     //- 2. position the progress bar for uploading the NFT.
     setProgrssMessage(PROGRESS_STATE[0].label)
+    setProgressValue(PROGRESS_STATE[0].value)
     const body = new FormData();
     body.append("file", image);    
-    const response = await fetch("/api/upload", {
+    let response = await fetch("/api/upload", {
       method: "POST",
       body
     });
-    setProgressValue(PROGRESS_STATE[0].value)
-
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    //-3. position the progress bar for loading safeguard algorithm
     
+    // let uri = await response.json().files.file.originalFilename;
+    let uri = await response.json();
+    uri = `${window.location.href}${uri.files.file.originalFilename}`;
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    //-3. position the progress bar for loading safeguard algorithm
     setProgrssMessage(PROGRESS_STATE[1].label)
     setProgressValue(PROGRESS_STATE[1].value)
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
     //-4. position the progress bar for doing a background check
     setProgrssMessage(PROGRESS_STATE[2].label)
+    response = await fetch("/api/search", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ uri: uri })
+    })
     setProgressValue(PROGRESS_STATE[2].value)
+    const pages = (await response.json()).results;
 
-    
   };
 
   return (
     <Layout home>
-      {/* Keep the existing code here */}
+  
       <Head>
         <title>{siteTitle}</title>
       </Head>
+
+      {/* title */}
       <section className={utilStyles.headingMd}>
         <p>{progressMessage}</p>
-      </section>
+      </section> {/* //-title */}
       
       <section className={utilStyles.imageSection}>
         <h4>Select Image</h4>
@@ -91,7 +101,7 @@ export default function Home({ allPostsData }) {
         <img src={createObjectURL} />
       </section>
        
-
+      {/* progressbar */}
       <div style={{display: progressState == true ? 'block' : 'none'}}>
         <ProgressBarLine
           value={progressValue}
@@ -113,25 +123,7 @@ export default function Home({ allPostsData }) {
             }
           }}
         />
-      </div>
-
-      {/* Add this <section> tag below the existing <section> tag */}
-      {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-            <Link href={`/posts/${id}`}>
-              <a>{title}</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>
-              <Date dateString={date} />
-            </small>
-          </li>
-          ))}
-        </ul>
-      </section> */}
+      </div>  {/* //-progressbar */}
     </Layout>
   )
 }
