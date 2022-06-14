@@ -20,14 +20,13 @@ export default async (req, res) => {
 
             var oldPath = files.file.filepath
             var newPath = `./public/upload/${files.file.originalFilename}`;
-            // var newPath = `/Volumes/LocalDisk/work/04_reverse_image_search/${files.file.originalFilename}`
-            // mv(oldPath, newPath, function(err) { console.log(err)} )
 
+            //- create the temporary filesystem and hand it over to the new file on the public
             var readStream=fs.createReadStream(oldPath);
             var writeStream=fs.createWriteStream(newPath);
             readStream.pipe(writeStream);
             readStream.on('end',function(){
-            fs.unlinkSync(oldPath);
+                fs.unlinkSync(oldPath);
             });
 
             res.status(200).json({ fields, files })

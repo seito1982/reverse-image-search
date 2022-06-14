@@ -17,10 +17,17 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
+  const PROGRESS_STATE = [
+    {label: 'Uploading your NFT...', value: 30},
+    {label: 'Loading Safeguard Algorithm', value: 60},
+    {label: 'Doing a Background Check', value: 100}
+  ];
 
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [progressState, setProgrssState] = useState(false);
+  const [progressMessage, setProgrssMessage] = useState('Home');
+  const [progressValue, setProgressValue] = useState(0);
 
   const uploadToClient = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -29,15 +36,36 @@ export default function Home({ allPostsData }) {
       setImage(i);
       setCreateObjectURL(URL.createObjectURL(i));
     }
-  };
+  }
 
   const uploadToServer = async (event) => {
+    
+    //- 1. show the prgress bar 
+    setProgrssState(true)
+    setProgressValue(0);
+
+    //- 2. position the progress bar for uploading the NFT.
+    setProgrssMessage(PROGRESS_STATE[0].label)
     const body = new FormData();
     body.append("file", image);    
     const response = await fetch("/api/upload", {
       method: "POST",
       body
     });
+    setProgressValue(PROGRESS_STATE[0].value)
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    //-3. position the progress bar for loading safeguard algorithm
+    
+    setProgrssMessage(PROGRESS_STATE[1].label)
+    setProgressValue(PROGRESS_STATE[1].value)
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    //-4. position the progress bar for doing a background check
+    setProgrssMessage(PROGRESS_STATE[2].label)
+    setProgressValue(PROGRESS_STATE[2].value)
+
+    
   };
 
   return (
@@ -47,7 +75,7 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Uploading your NFT...</p>
+        <p>{progressMessage}</p>
       </section>
       
       <section className={utilStyles.imageSection}>
@@ -66,17 +94,17 @@ export default function Home({ allPostsData }) {
 
       <div style={{display: progressState == true ? 'block' : 'none'}}>
         <ProgressBarLine
-          value={10}
+          value={progressValue}
           min={0}
           max={100}
           strokeWidth={1}
           trailWidth={1}
           styles={{
             path: {
-              stroke: '#17b978'
+              stroke: '#a7ff83'
             },
             trail: {
-              stroke: '#a7ff83'
+              stroke: '#17b978'
             },
             text: {
               fill: '#ffffff00',
