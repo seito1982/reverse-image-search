@@ -32,15 +32,12 @@ export default function Home({ allPostsData }) {
   };
 
   const uploadToServer = async (event) => {
-    setProgrssState(!progressState);
-    /*     
     const body = new FormData();
     body.append("file", image);    
     const response = await fetch("/api/upload", {
       method: "POST",
       body
     });
-    */
   };
 
   return (
