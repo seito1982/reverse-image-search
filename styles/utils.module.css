@@ -1,0 +1,80 @@
+.heading2Xl {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
+
+.headingXl {
+  font-size: 12pt;
+  /* line-height: 1.3; */
+  /* font-weight: 800; */
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+  color: white;
+  text-align: center;
+}
+
+.headingLg {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
+
+.headingMd {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.headingMd p {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-family: 'FeatherIcons';
+  font-size: 14pt;
+  margin: 0px !important;
+}
+
+.borderCircle {
+  border-radius: 9999px;
+}
+
+.colorInherit {
+  color: inherit;
+}
+
+.padding1px {
+  padding-top: 1px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  margin: 0 0 1.25rem;
+}
+
+.lightText {
+  color: #999;
+}
+
+/* image section */
+.imageSection {
+  margin: 35px 0px 35px 0px;
+}
+
+.imageSection h4 {
+  margin: 0px;
+  font-weight: bold;
+  font-family: 'BrandIcons';
+  color: white;
+}
+
+.imageSection img {
+  margin-top: 5px;
+}
+/* //- image section */

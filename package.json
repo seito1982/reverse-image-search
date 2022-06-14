@@ -1,0 +1,49 @@
+{
+  "name": "reverse-image-search",
+  "version": "1.0.0",
+  "description": "Next.js blog app ready to deploy to GitHub Pages using gh-pages",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export && touch ./out/.nojekyll",
+    "deploy": "gh-pages -d out -t true",
+    "prettier": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcoandre1/reverse-image-search.git"
+  },
+  "keywords": [
+    "Next.js",
+    "GitHub Pages",
+    "gh-pages"
+  ],
+  "author": "Marco E (https://modokemdev.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcoandre1/reverse-image-search/issues"
+  },
+  "homepage": "https://github.com/marcoandre1/reverse-image-search#readme",
+  "dependencies": {
+    "date-fns": "^2.16.1",
+    "formidable": "^2.0.1",
+    "gray-matter": "^4.0.2",
+    "i": "^0.3.7",
+    "mv": "^2.1.1",
+    "next": "^10.0.3",
+    "nextjs-progressbar": "^0.0.14",
+    "nprogress": "^0.2.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-progressbar-line": "^1.0.2",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "prettier": "2.1.2"
+  }
+}

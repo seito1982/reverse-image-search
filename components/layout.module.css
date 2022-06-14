@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'BrandIcons';
+  src: local('BrandIcons'), url(/fonts/Brand-Icons036a.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'FeatherIcons';
+  src: local('FeatherIcons.woff'), url(/fonts/Feather-Iconse198.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'LineAwesomea';
+  src: local('LineAwesomea'), url(/fonts/Line-Awesomea4dd.woff) format('woff');
+}
+
+.container {
+  max-width: 36rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:white;
+  font-family: 'BrandIcons';
+}
+
+.headerImage {
+  width: 6rem;
+  height: 6rem;
+}
+
+.headerHomeImage {
+  width: 8rem;
+  height: 8rem;
+}
+
+.backToHome {
+  margin: 3rem 0 0;
+  text-align: center;
+}
+
+.backToHome a {
+  color: black !important;
+}
+
+
