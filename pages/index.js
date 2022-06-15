@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Router, { useRouter } from 'next/router'
 import {TEST_IMAGE_URL, IS_TEST_ON_LOCAL} from '../constant'
 
+
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
   return {
@@ -105,15 +106,24 @@ export default function Home({ allPostsData }) {
       </section> {/* //-title */}
       
       <section className={utilStyles.imageSection}>
-        <h4>Select Image</h4>
-        <input type="file" name="myImage" onChange={uploadToClient} />
-        <button
-          className="btn btn-primary"
-          type="submit"
-          onClick={uploadToServer}
-        >
-          Send to server
-        </button>
+        {/* <h4>Select Image</h4> */}
+        <div className={utilStyles.uploadBtnDiv}>
+          <label class={utilStyles.chooseFileBtn}>
+            <input type="file" name="myImage" onChange={uploadToClient} />
+            Choose File
+          </label>
+        </div>
+      
+       <div className={utilStyles.sendBtnDiv}>
+            <button
+              className={utilStyles.risBtn}
+              type="submit"
+              onClick={uploadToServer}
+            >
+            Send to server
+          </button>
+       </div>
+        
         <img src={createObjectURL} />
       </section>
        

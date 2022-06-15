@@ -1,9 +1,10 @@
 .heading2Xl {
   font-size: 2.5rem;
   line-height: 1.2;
-  font-weight: 800;
   letter-spacing: -0.05rem;
   margin: 1rem 0;
+  font-family: 'Urbanist';
+  font-weight: 600;
 }
 
 .headingXl {
@@ -77,5 +78,59 @@
 .imageSection img {
   margin-top: 5px;
 }
-
 /* //- image section */
+
+/* home page */
+
+
+.chooseFileBtn {
+  padding:20px 20px 20px 20px;
+  border:3px solid #FFF;
+  border-radius:10px;
+  color:#FFF;
+  background-color:#FF7F00;
+  font-weight:bold;
+  width:100px;
+  text-align:center;
+  font-size: 13px;
+}
+
+.chooseFileBtn:hover {
+  background-color:rgba(255,255,255,0.18);
+  cursor: pointer;
+}
+
+.hide_file {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+}
+
+.risBtn {
+  padding:20px 20px 20px 20px;
+  border:3px solid #FFF;
+  border-radius:10px;
+  color:#FFF;
+  background-color:#FF7F00;
+  font-weight:bold;
+  font-size: 13px;
+}
+.risBtn:hover {
+  background-color:rgba(255,255,255,0.18);
+  cursor: pointer;
+}
+
+.uploadBtnDiv {
+  display: inline-block;
+}
+.sendBtnDiv {
+  display: inline-block;
+  margin-left: 50%;
+  /* position: 'ab'; */
+}
+/* //- home page */
