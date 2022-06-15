@@ -32,7 +32,7 @@ export default function Home({ allPostsData }) {
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [progressState, setProgrssState] = useState(false);
-  const [progressMessage, setProgrssMessage] = useState('Home');
+  const [progressMessage, setProgrssMessage] = useState('Safeguard');
   const [progressValue, setProgressValue] = useState(0);
 
   const uploadToClient = (event) => {
@@ -124,7 +124,11 @@ export default function Home({ allPostsData }) {
           </button>
        </div>
         
-        <img src={createObjectURL} />
+        
+      </section>
+
+      <section>
+      <img src={createObjectURL} />
       </section>
        
       {/* progressbar */}
