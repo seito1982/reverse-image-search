@@ -6,6 +6,8 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import { ProgressBarLine } from 'react-progressbar-line'
 import { useState } from 'react'
+import Router, { useRouter } from 'next/router'
+import {TEST_IMAGE_URL, IS_TEST_ON_LOCAL} from '../constant'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -17,11 +19,14 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
+  
   const PROGRESS_STATE = [
     {label: 'Uploading your NFT...', value: 30},
     {label: 'Loading Safeguard Algorithm', value: 60},
     {label: 'Doing a Background Check', value: 100}
   ];
+
+  const router = useRouter();
 
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
@@ -34,13 +39,15 @@ export default function Home({ allPostsData }) {
       const i = event.target.files[0];
 
       setImage(i);
-      setCreateObjectURL(URL.createObjectURL(i));
+
+      if( IS_TEST_ON_LOCAL ) setCreateObjectURL(TEST_IMAGE_URL);
+      else setCreateObjectURL(URL.createObjectURL(i));
     }
   }
 
   const uploadToServer = async (event) => {
-    
-    //- 1. show the prgress bar 
+
+    // - 1. show the prgress bar 
     setProgrssState(true)
     setProgressValue(0);
 
@@ -56,7 +63,9 @@ export default function Home({ allPostsData }) {
     
     // let uri = await response.json().files.file.originalFilename;
     let uri = await response.json();
-    uri = `${window.location.href}${uri.files.file.originalFilename}`;
+    uri = `${window.location.href}upload/${uri.files.file.originalFilename}`;
+    
+    if( IS_TEST_ON_LOCAL )  uri = TEST_IMAGE_URL;
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     //-3. position the progress bar for loading safeguard algorithm
@@ -73,11 +82,18 @@ export default function Home({ allPostsData }) {
     })
     setProgressValue(PROGRESS_STATE[2].value)
     const pages = (await response.json()).results;
+    console.log(pages);
 
+    pages.length > 0 ? 
+      Router.push({
+        pathname: 'posts/success',
+        query: { data: JSON.stringify(pages)}} )  :
+      Router.push({
+          pathname: 'posts/oop'})
   };
 
   return (
-    <Layout home>
+    <Layout home >
   
       <Head>
         <title>{siteTitle}</title>
@@ -104,7 +120,7 @@ export default function Home({ allPostsData }) {
       {/* progressbar */}
       <div style={{display: progressState == true ? 'block' : 'none'}}>
         <ProgressBarLine
-          value={progressValue}
+          value={progressValue}          
           min={0}
           max={100}
           strokeWidth={1}

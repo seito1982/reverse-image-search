@@ -46,4 +46,25 @@
   color: black !important;
 }
 
+/* searched result panel - component layout pannel */
+
+.searchImagePanel {
+  color:white;
+  font-family: 'BrandIcons';
+  font-size: 12pt;
+}
+
+.searchImageItem {
+  margin-left: 10pt;
+  margin-top: 10px;
+  border-bottom: solid 1px;
+  /* color: #000; */
+}
+
+.searchImageItem a {
+  color: white;
+}
+
+
+/* //- searched result panel */
 

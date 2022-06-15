@@ -13,7 +13,7 @@
   letter-spacing: -0.05rem;
   margin: 1rem 0;
   color: white;
-  text-align: center;
+  text-align: left;
 }
 
 .headingLg {
@@ -77,4 +77,5 @@
 .imageSection img {
   margin-top: 5px;
 }
+
 /* //- image section */

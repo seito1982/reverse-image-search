@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { withRouter } from 'next/router'
 
 // Only holds serverRuntimeConfig and publicRuntimeConfig
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
@@ -10,7 +11,10 @@ const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 const name = 'INFERNA'
 export const siteTitle = 'Reverse-Image-Search'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, passData }) {
+  const pass_data = passData === '' || passData == undefined ? [] : JSON.parse(passData)
+  console.log(pass_data)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -54,15 +58,31 @@ export default function Layout({ children, home }) {
           </Link>
            
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
-            {/* <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2> */}
           </>
         )}
       </header>
       <main>{children}</main>
+
+      {/* display the searching result into list */}
+      {
+
+        (pass_data && pass_data.length) ? 
+          (<div className={styles.searchImagePanel}>
+             Finded Image: {pass_data.length}
+            {
+              pass_data.map((element, index) => 
+                  element.url ? 
+                  ( <div key={index} className={styles.searchImageItem}>
+                      <a key={index} target="_blank" rel="noopener noreferrer" href={element.url}>{element.title} </a>
+                    </div>
+                  ) : null
+              )
+            }
+          </div>)
+          :
+          null
+      }
+
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
