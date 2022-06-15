@@ -11,7 +11,15 @@ export const config = {
 };
  
 export default async (req, res) => {
-    const data = await new Promise((resolve, reject) => {
+
+    var dir = './public/upload';
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir, { recursive: true });
+    }
+
+    // const data = await new Promise((resolve, reject) => 
+    {
        const form = new IncomingForm()
         form.parse(req, (err, fields, files) => {
             if (err) return reject(err)
@@ -30,6 +38,7 @@ export default async (req, res) => {
             });
             res.status(200).json({ fields, files })
         })
-    })
+    }
+    // )
     
 }

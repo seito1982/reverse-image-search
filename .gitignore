@@ -40,3 +40,6 @@ yarn-error.log*
 # Local History for Visual Studio Code
 .history/
 
+# upload
+/public/upload
+
