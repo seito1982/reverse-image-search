@@ -86,10 +86,10 @@ export default function Home({ allPostsData }) {
 
     pages.length > 0 ? 
       Router.push({
-        pathname: 'posts/success',
+        pathname: 'posts/oop',
         query: { data: JSON.stringify(pages)}} )  :
       Router.push({
-          pathname: 'posts/oop'})
+          pathname: 'posts/success'})
   };
 
   return (
